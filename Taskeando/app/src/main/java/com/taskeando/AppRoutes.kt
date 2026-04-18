@@ -12,6 +12,8 @@ import com.taskeando.ui.screens.*
 
 sealed class Screen {
     object Splash : Screen()
+
+    object Login : Screen()
     object Tareas : Screen()
     object Calendario : Screen()
     object CrearNota : Screen()
@@ -25,7 +27,11 @@ fun AppRoutes() {
     when(val screen = currentScreen ){
 
         is Screen.Splash -> SplashScreen (
-            onEmpezar = {currentScreen = Screen.Tareas }
+            onEmpezar = {currentScreen = Screen.Login }
+        )
+
+        is Screen.Login -> LoginScreen(
+            onLogin = { currentScreen = Screen.Tareas }
         )
 
         is Screen.Tareas -> MisTareasScreen(
